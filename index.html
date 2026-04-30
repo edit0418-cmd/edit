@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Login</title>
+
+<style>
+body{
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to top, #000000, #f2f2f2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.container{
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    width:300px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+h2{
+    text-align:center;
+    margin-bottom:15px;
+}
+
+/* 👇 Proper column alignment */
+.form-group{
+    display:flex;
+    flex-direction:column;
+    margin-bottom:10px;
+}
+
+input{
+    padding:10px;
+    border-radius:8px;
+    border:1px solid #000000;
+}
+
+button{
+    width:100%;
+    padding:10px;
+    border:none;
+    border-radius:8px;
+    background:#000000;
+    color:white;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#000000;
+}
+
+.error{
+    color:red;
+    font-size:12px;
+    margin-bottom:10px;
+    text-align:center;
+}
+
+p{
+    text-align:center;
+    margin-top:10px;
+    font-size:12px;
+}
+  a{
+            color: #002fff;
+            text-decoration: none;
+        }
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Login</h2>
+
+<form onsubmit="login(event)">
+    <div class="form-group">
+       
+        <input type="email" id="username" placeholder="Enter email">
+    </div>
+
+    <div class="form-group">
+ 
+        <input type="password" id="password" placeholder="Enter password">
+    </div>
+
+    <div id="error" class="error"></div>
+
+    <button type="submit">Login</button>
+    <div id="success" style="color:rgb(0, 0, 0); font-size:13px;"></div>
+
+</form>
+
+    <p>Don't have account? <a href="signup.html">Signup</a></p>
+</div>
+
+<script>
+function login(e){
+    e.preventDefault();
+
+    let email = document.getElementById("username").value;
+    let password = document.getElementById("password").value;
+    let error = document.getElementById("error");
+    let success = document.getElementById("success");
+
+    let storedUser = localStorage.getItem(email);
+
+    // clear old messages
+    error.innerText = "";
+    success.innerText = "";
+
+    if(!storedUser){
+        error.innerText = "User not found ❌";
+        return;
+    }
+
+    let data = JSON.parse(storedUser);
+
+    if(password === data.password){
+
+        // save login
+        localStorage.setItem("loggedInUser", email);
+
+        // show success message
+        success.innerText = "Login successful ✅ Redirecting...";
+
+        // delay redirect (2 sec)
+        setTimeout(() => {
+            window.location.href = "main.html";
+        }, 2000);
+
+    } else {
+        error.innerText = "Wrong Password ❌";
+    }
+}
+    if(password === data.password){
+
+    // 👇 logged user save
+    localStorage.setItem("loggedInUser", email);
+
+    alert("Login Successful ✅");
+    window.location.href = "main.html";
+}
+
+</script>
+
+</body>
+</html>

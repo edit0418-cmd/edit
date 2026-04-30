@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Main Page</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<script>
+    // 🔐 Check login
+let user = localStorage.getItem("loggedInUser");
+
+if(!user){
+    window.location.href = "index.html";
+}
+function toggleMenu() {
+    document.getElementById("menu-links").classList.toggle("show");
+}
+
+</script>
+<header>
+    <h1>My Website</h1>
+    <p id="welcome"></p> <!-- 👈 add this -->
+</header>
+<nav>
+    
+    <div class="menu-container">
+        <div class="menu-icon" onclick="toggleMenu()">☰</div>
+
+        <div id="menu-links" class="menu-links">
+          <a href="home.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+          <a href="info.html">Info</a>
+
+          <!-- 👇 logout same style -->
+          <a href="#" onclick="logout()" class="logout-link">Logout</a>
+        </div>
+    </div>
+</nav>
+
+<div class="content">
+<section class="section">
+    <h2>Design Topics</h2>
+
+    <div class="topic">
+        <h3>UI/UX Basics</h3>
+        <p>Learn the fundamentals of user interface and user experience design.</p>
+        <a href="uiux.html"><button class="main-btn">Explore</button></a>
+    </div>
+
+    <div class="topic">
+        <h3>Color Theory</h3>
+        <p>Understand how colors work together to create attractive designs.</p>
+        <a href="color.html"><button class="main-btn">Explore</button></a>
+    </div>
+
+    <div class="topic">
+        <h3>Modern Layouts</h3>
+        <p>Discover responsive and clean layout techniques for websites.</p>
+        <a href="layout.html"><button class="main-btn">Explore</button></a>
+    </div>
+
+    <div class="topic">
+        <h3>Animation Ideas</h3>
+        <p>Add life to your website using simple animations and effects.</p>
+        <a href="animation.html"><button class="main-btn">Explore</button></a>
+    </div>
+
+</section>
+</div>
+
+
+<script>
+// 👤 Show username
+document.getElementById("welcome").innerText = "Welcome, " + user;
+
+// 🚪 Logout
+function logout(){
+    localStorage.removeItem("loggedInUser");
+    window.location.href = "index.html";
+}
+</script>
+</body>
+</html>
